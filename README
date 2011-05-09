@@ -1,0 +1,34 @@
+/***********************************\
+*                                   *
+* EJigsaw Site Administration Suite *
+*                                   *
+*      Created by Jigsaw Spain      *
+*        www.jigsawspain.com        *
+*                                   *
+\***********************************/
+
+README - 09/05/2011
+
+EJigsaw Site Administration Suite is a PHP/MySQL based Content Management Solution (CMS) targetted as busineses who have little experience in establishing an online presence. Then plan is to create an easy to learn interface that allows simple customisation of a website and it's content.
+
+The suite consitst of a main Framework, the administration pages and the pages that linkthe user to the content held int eh database, and plug-in modules which allow added customisation and additoinal features.
+
+Known Developers:
+jigsawspain - Elliott Bristow
+
+/**************\
+* 
+* INSTALLATION *
+*              *
+\**************/
+
+1. Download the latest package from 'https://github.com/jigsawspain/EJigsaw-Site-Administration-Suite' by clicking the 'Download' button
+2. Unzip the contents to a directory on your computer
+3. Locate the 'config.inc.default.php' and rename it 'config.inc.php'
+4. Open the 'config.inc.php' in a text editor (such a Notepad for users of Microsoft Windows) and follow the instruction for settign up your MySQL database settings. (If you don't know these details, ask your web hosting provider)
+5. Save and close the file
+6. Upload all the files to your web site
+7. In your web browser, navigate to 'http://www.yourdomain.com/ejadmin/install.php' (replacing 'yourdomain.com' and 'ejadmin' as appropriate)
+8. Assuming no errors were generated (if there were, see our issues page at 'https://github.com/jigsawspain/EJigsaw-Site-Administration-Suite/issues') the system is now ready to use. Navigate to 'http://www.yourdomain.com/ejadmin' (replacing 'yourdomain.com' and 'ejadmin' as appropriate) to access the Control Panel and start customising your settings!
+
+RECOMMENDATION: It is recommended that you delete the install.php file from your web site's server once installation has completed to prevent unauthorised users from overwriting any settings changed since installation.
