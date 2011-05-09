@@ -1,0 +1,51 @@
+@charset "utf-8";
+/*
+*** EJigsaw Site Administration Suite
+**
+*** By Jigsaw Spain - www.jigsawspain.com
+**
+*** Installation CSS Styles - File Build 0.1
+*/
+
+/* Tag Replacements */
+
+*
+{
+	margin: 0;
+	padding: 0;
+}
+
+body
+{
+	background: #E3EEF7 url(../images/bg_body.png) top left repeat-x;
+	color: #42769B;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 14px;
+}
+
+/* IDs and Classes */
+
+.EJ_instError
+{
+	color: #F00;
+	margin-bottom: 5px;
+}
+
+.EJ_instText
+{
+	margin-bottom: 5px;
+}
+
+#frame
+{
+	background: url(../images/logo_ej.png) no-repeat top left;
+	margin: 0 auto;
+	width: 1000px;
+}
+
+#header
+{
+	background:	url(../images/logo_install.png) no-repeat top right;
+	height: 100px;
+	margin-left: 227px;
+}
