@@ -69,7 +69,7 @@ Reports an error message to screen and ceases running the script
 error_reporting(E_ERROR);
 require("config.inc.php");
 
-$EJ_settings['ver'] = "0.3";
+$EJ_settings['ver'] = "0.2";
 
 echo "<!DOCTYPE html>
 <html>

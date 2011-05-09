@@ -247,7 +247,7 @@ Display the main menu
 */
 //error_reporting(E_ERROR);
 set_error_handler("EJ_error", E_ERROR);
-require('config.inc.php');
+require_once(dirname(__FILE__).'/config.inc.php');
 $EJ_mysql = new EJ_mysql($EJ_settings['mysqlhost'], $EJ_settings['mysqluser'], $EJ_settings['mysqlpass'], $EJ_settings['mysqldb'], $EJ_settings['mysqlprefix']);
 
 // Fetch settings
