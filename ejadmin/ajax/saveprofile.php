@@ -18,7 +18,11 @@ if (!isset($_SESSION['userid']) or $_POST['key'] != $_SESSION['key'] or empty($_
 // Add new user
 $i = 0;
 $chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
-$EJ_mysql->query("UPDATE {$EJ_mysql->prefix}users SET email = '{$_POST['email']}', pass = MD5('{$_POST['pass']}') WHERE userid = '{$_SESSION['userid']}'");
+if (!empty($_POST['pass']))
+{
+	$pass = ", pass = MD5('{$_POST['pass']}')";
+}
+$EJ_mysql->query("UPDATE {$EJ_mysql->prefix}users SET email = '{$_POST['email']}'$pass WHERE userid = '{$_SESSION['userid']}'");
 
 // If everything has gone smoothly
 echo '<p class="EJ_user_success">Profile Updated</p>';
