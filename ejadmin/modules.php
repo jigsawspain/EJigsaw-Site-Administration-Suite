@@ -11,38 +11,6 @@ if ($_SESSION['usertype']<5)
 
 // error_reporting(E_ALL);
 
-function ver_check($curv, $thisv)
-// Version checking, is $thisv (This Version) greater or less than $curv (Currently Installed Version)
-// Returns:
-// 	0 = Both the same
-// 	1 = This version is newer
-// 	-1 = This version is older
-// Examples:
-// 	ver_check('0.0.1', '1.0.0'); -> returns 1
-// 	ver_check('1.0', '0.1'); -> returns -1
-{
-	$return = 0;
-	if($curv!=$thisv)
-	{
-		$curv = explode(".",$curv);
-		$thisv = explode(".",$thisv);
-		if(count($curv)>count($thisv))
-			$pieces = count($curv);
-		else
-			$pieces = count($thisv);
-		$piece = 0;
-		while($piece<$pieces and $return==0)
-		{
-			if ($thisv[$piece]>$curv[$piece])
-				$return = 1;
-			elseif ($curv[$piece]>$thisv[$piece])
-				$return = -1;
-			$piece++;
-		}
-	}
-	return $return;
-}
-
 $EJ_modules = array();
 ob_start();
 $EJ_mysql->query("SELECT * FROM {$EJ_mysql->prefix}modules ORDER BY name");
@@ -62,13 +30,14 @@ if ($EJ_mysql->numRows()!=0)
 				ob_start();
 				$module = new $id();
 				ob_end_clean();
-				$ver_change = ver_check($data['version'], $module->version);
-				if($ver_change == -1)
+				$currversion = number_format(str_replace(".","",$data['version']));
+				$thisversion = number_format(str_replace(".","",$module->version));
+				if($thisversion < $currversion)
 				{
 					$EJ_modules[$id]['version'] .= " <img src=\"images/error.png\" alt=\"Error!\" title=\"Error: Old Version Found! (".$module->version.")\">";
-				} elseif ($ver_change == 1)
+				} elseif ($thisversion > $currversion)
 				{
-					$EJ_modules[$id]['version'] .= " <a href=\"javascript:update_module('$id', '{$EJ_modules[$id]['name']}', '{$EJ_modules[$id]['version']}')\"><img src=\"images/upgrade.png\" alt=\"Update\" title=\"Update Available\" /></a>";
+					$EJ_modules[$id]['version'] .= " <a href=\"javascript:update_module('$id', '{$EJ_modules[$id]['name']}', {$EJ_modules[$id]['version']})\"><img src=\"images/upgrade.png\" alt=\"Update\" title=\"Update Available\" /></a>";
 				}
 				unset($module);
 			}
