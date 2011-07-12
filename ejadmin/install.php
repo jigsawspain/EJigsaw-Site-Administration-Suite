@@ -47,8 +47,12 @@ Reports an error message to screen and ceases running the script
 		case 7:
 			$EJ_err_message = "Error creating table data!";
 		break;
+		case 99:
+			$EJ_err_message = "Authorisation Error! Only 'admin' can run install.php after initial setup!";
+		break;
 		default :
 			$EJ_err_message = "Unknown error! Please contact support at <a href=\"mailto:admin@jigsawspain.com?subject=EJigsaw Unknown Error\">ejsupport@jigsawspain.com</a>";
+			$details = "Not logged in OR Not 'admin'";
 		break;
 	}
 	$err_message = "	<p class=\"EJ_instError\">
@@ -68,7 +72,7 @@ Reports an error message to screen and ceases running the script
 error_reporting(E_ERROR);
 require("config.inc.php");
 
-$EJ_settings['ver'] = "0.3.1";
+$EJ_settings['ver'] = "0.3.2";
 
 echo "<!DOCTYPE html>
 <html>
@@ -97,6 +101,13 @@ echo "<!DOCTYPE html>
 $EJ_settings['mysqlconnect'] = mysql_connect($EJ_settings['mysqlhost'], $EJ_settings['mysqluser'], $EJ_settings['mysqlpass']);
 if (!$EJ_settings['mysqlconnect']) EJ_error(0);
 if (!mysql_select_db($EJ_settings['mysqldb'], $EJ_settings['mysqlconnect'])) EJ_error(0);
+
+session_start();
+$result = mysql_query("SELECT * FROM {$EJ_settings['mysqlprefix']}users WHERE userid = 'admin'");
+if (mysql_num_rows($result)!=0 and $_SESSION['userid']!="admin")
+{
+	EJ_error(99);
+}
 
 
 /*
