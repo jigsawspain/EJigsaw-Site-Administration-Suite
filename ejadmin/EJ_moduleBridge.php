@@ -47,7 +47,7 @@ function EJ_bridgeModule($moduleid, $actionid)
 	$module = new $id($EJ_mysql, $_vars, $EJ_settings);
 	if (isset($_REQUEST['action']) or !empty($actionid))
 	{
-		if (empty($_REQUEST['action']))
+		if (!empty($actionid))
 		{
 			$action = $actionid;
 		} else
