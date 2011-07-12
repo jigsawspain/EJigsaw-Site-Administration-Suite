@@ -108,7 +108,7 @@ if (isset($_REQUEST['module']))
 			$id = $_REQUEST['module'];
 			$_vars = $_REQUEST;
 			unset($_vars['PHPSESSID']);
-			$module = new $id($EJ_mysql, $_vars);
+			$module = new $id($EJ_mysql, $_vars, $EJ_settings);
 			switch (strtolower($_REQUEST['action']))
 			{
 				case 'install':
