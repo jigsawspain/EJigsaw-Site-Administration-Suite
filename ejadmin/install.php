@@ -5,6 +5,7 @@
 **
 *** By Jigsaw Spain - www.jigsawspain.com
 **
+*** Installation Procedure - File Build 0.2
 */
 
 
@@ -60,38 +61,6 @@ Reports an error message to screen and ceases running the script
 	die($err_message);
 }
 
-function ver_check($curv, $thisv)
-// Version checking, is $thisv (This Version) greater or less than $curv (Currently Installed Version)
-// Returns:
-// 	0 = Both the same
-// 	1 = This version is newer
-// 	-1 = This version is older
-// Examples:
-// 	ver_check('0.0.1', '1.0.0'); -> returns 1
-// 	ver_check('1.0', '0.1'); -> returns -1
-{
-	$return = 0;
-	if($curv!=$thisv)
-	{
-		$curv = explode(".",$curv);
-		$thisv = explode(".",$thisv);
-		if(count($curv)>count($thisv))
-			$pieces = count($curv);
-		else
-			$pieces = count($thisv);
-		$piece = 0;
-		while($piece<$pieces and $return==0)
-		{
-			if ($thisv[$piece]>$curv[$piece])
-				$return = 1;
-			elseif ($curv[$piece]>$thisv[$piece])
-				$return = -1;
-			$piece++;
-		}
-	}
-	return $return;
-}
-
 
 /*
 ** Initial Configuration and Initialisation
@@ -100,7 +69,7 @@ function ver_check($curv, $thisv)
 error_reporting(E_ERROR);
 require("config.inc.php");
 
-$EJ_settings['ver'] = "0.2.1";
+$EJ_settings['ver'] = "0.2";
 
 echo "<!DOCTYPE html>
 <html>
@@ -211,12 +180,11 @@ if (mysql_num_rows($EJ_settings['mysqlresult'])==0)
 {
 	$EJ_settings['mysqlarray'] = mysql_fetch_assoc($EJ_settings['mysqlresult']);
 	$EJ_settings['oldver'] = $EJ_settings['mysqlarray']['value'];
-	$vcheck = ver_check($EJ_settings['ver'], $EJ_settings['oldver']);
-	if ($vercheck==-1)
+	if (number_format($EJ_settings['oldver']>$EJ_settings['ver']))
 	// Newer version already installed
 	{
 		EJ_error(4);
-	} elseif ($vercheck==1)
+	} elseif ($EJ_settings['oldver']!=$EJ_settings['version'])
 	// Update version data
 	{
 		switch ($EJ_settings['oldver'])
