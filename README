@@ -32,3 +32,4 @@ jigsawspain - Elliott Bristow
 8. Assuming no errors were generated (if there were, see our issues page at 'https://github.com/jigsawspain/EJigsaw-Site-Administration-Suite/issues') the system is now ready to use. Navigate to 'http://www.yourdomain.com/ejadmin' (replacing 'yourdomain.com' and 'ejadmin' as appropriate) to access the Control Panel and start customising your settings!
 
 RECOMMENDATION: It is recommended that you delete the install.php file from your web site's server once installation has completed to prevent unauthorised users from overwriting any settings changed since installation.
+However, since version 0.3.1, only the 'admin' user can re-run the installation procedure after initial setup. This greatly reduces the likelihood of unauthorised re-installation or updating.
