@@ -49,6 +49,7 @@ Reports an error message to screen and ceases running the script
 		break;
 		case 99:
 			$EJ_err_message = "Authorisation Error! Only 'admin' can run install.php after initial setup!";
+			$details = "Please <a href=\"login.php\">login</a> as 'admin' and try again.";
 		break;
 		default :
 			$EJ_err_message = "Unknown error! Please contact support at <a href=\"mailto:admin@jigsawspain.com?subject=EJigsaw Unknown Error\">ejsupport@jigsawspain.com</a>";
@@ -72,7 +73,7 @@ Reports an error message to screen and ceases running the script
 error_reporting(E_ERROR);
 require("config.inc.php");
 
-$EJ_settings['ver'] = "0.3.2";
+$EJ_settings['ver'] = "0.3.3";
 
 echo "<!DOCTYPE html>
 <html>
@@ -250,7 +251,8 @@ echo "<br/>
 $EJ_settings['mysqlquery'] = "INSERT INTO {$EJ_settings['mysqlprefix']}settings (setting, name, value, `desc`) VALUES
 	('siteemail', 'Site Email', 'setthis@yourdomain.com', 'A contact email address for your site. Automatically generated emails to users will be shown as having been sent from this address.') ,
 	('sitename', 'Site Name', 'EJigsaw Site', 'A short name for your website. This will appear in automatically generated emails to users (e.g. Kind Regards, {Site Name})') ,
-	('siteaddress', 'Site Address', 'www.yourdomain.com', 'The home page address of your site. This should be as you want it to appear on emails and corespondence sent from the site. (Note: do NOT include the \'http://\')')
+	('siteaddress', 'Site Address', 'www.yourdomain.com', 'The home page address of your site. This should be as you want it to appear on emails and corespondence sent from the site. (Note: do NOT include the \'http://\')'),
+	('theme', 'Theme', 'default', 'The theme used by the site to decide how each page is displayed. (This feature is not yet fully implemented)')
 	ON DUPLICATE KEY UPDATE setting = setting";
 $EJ_settings['mysqlresult3'] = mysql_query($EJ_settings['mysqlquery'], $EJ_settings['mysqlconnect']); 
 if (!$EJ_settings['mysqlresult3']) EJ_error(7);
@@ -276,7 +278,6 @@ echo "
 		&gt;&gt; Installation / Update Completed Successfully!<br/>
 		&gt;<br/>
 		&gt; Your are now using version {$EJ_settings['ver']}<br/>
-		&gt; It is recommended that you now delete the 'install.php' file from your server, or rename it to prevent unauthorised access.<br/>
 		&gt;
 	</p>
 	<p class=\"EJ_instText\">
