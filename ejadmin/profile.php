@@ -46,7 +46,7 @@ $user = $EJ_mysql->getRow();
 							<td class="setting">Confirm New Password</td><td class="value"><input type="password" name="confpass" id="confpass" value="<?=$_POST['confpass']?>" autocomplete="off"/></td><td class="tip">Must match above password.</td>
 						</tr>
 						<tr>
-							<td class="heading" colspan="3" style="text-align: center"><input type="button" name="save" id="save" value="Save" onClick="saveProfile('<?=$_SESSION['key']?>')"/></td>
+							<td class="heading" colspan="3" style="text-align: center"><input type="button" name="save" id="save" value="Save Profile/Password" onClick="saveProfile('<?=$_SESSION['key']?>')"/></td>
 						</tr>
 					</tbody>
 				</table>
