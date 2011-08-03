@@ -37,7 +37,7 @@ if ($EJ_mysql->numRows()!=0)
 					$EJ_modules[$id]['version'] .= " <img src=\"images/error.png\" alt=\"Error!\" title=\"Error: Old Version Found! (".$module->version.")\">";
 				} elseif ($thisversion > $currversion)
 				{
-					$EJ_modules[$id]['version'] .= " <a href=\"javascript:update_module('$id', '{$EJ_modules[$id]['name']}', {$EJ_modules[$id]['version']})\"><img src=\"images/upgrade.png\" alt=\"Update\" title=\"Update Available\" /></a>";
+					$EJ_modules[$id]['version'] .= " <a href=\"javascript:update_module('$id', '{$EJ_modules[$id]['name']}', {$EJ_modules[$id]['version']})\"><img src=\"images/upgrade.png\" alt=\"Update\" title=\"Update Required\" /></a>";
 				}
 				unset($module);
 			}
